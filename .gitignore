@@ -1,0 +1,5 @@
+*.o
+*.suo
+*.filters
+*.user
+*.old
