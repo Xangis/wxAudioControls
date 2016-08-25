@@ -39,7 +39,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -91,8 +91,8 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Demo Debug|Win32'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Demo Debug|Win32'">$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">Demo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">Demo\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Demo Debug VST|Win32'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Demo Debug VST|Win32'">$(Configuration)\</IntDir>
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
@@ -112,6 +112,7 @@
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Xangis\code\AudioFile;F:\lib\rtmidi-2.1.0;F:\lib\libsndfile-1.0.25\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Xangis\code\AudioFile;F:\lib\rtmidi-2.1.0;F:\lib\libsndfile-1.0.25\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">C:\Users\Xangis\code\AudioFile;F:\lib\rtmidi-2.1.0;F:\lib\libsndfile-1.0.25\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

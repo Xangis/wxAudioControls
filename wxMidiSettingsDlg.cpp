@@ -11,6 +11,7 @@
 // Image resources
 #include "greenbtn.xpm"
 #include "darkbtn.xpm"
+#include "spin.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( wxMidiSettingsDlg, wxDialog )
 
@@ -68,10 +69,6 @@ void wxMidiSettingsDlg::CreateControls()
 {    
     wxMidiSettingsDlg* itemDialog1 = this;
 
-    wxImage spinImage;
-    wxString spinPath = wxString::Format(_("spin.bmp"));
-    spinImage.LoadFile( spinPath, wxBITMAP_TYPE_BMP );
-
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemDialog1->SetSizer(itemBoxSizer2);
 
@@ -126,7 +123,7 @@ void wxMidiSettingsDlg::CreateControls()
     itemBoxSizer5->Add(_inputChannelText, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _inputChannelSpin = new wxBitmapSpinButton( itemDialog1, ID_INPUTCHANNELSPIN, wxDefaultPosition, wxSize( 16, 22 ), wxSP_ARROW_KEYS );
-    _inputChannelSpin->SetBitmap( &spinImage );
+    _inputChannelSpin->SetXpmBitmap( spin_xpm );
     itemBoxSizer5->Add(_inputChannelSpin, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 	itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
@@ -138,7 +135,7 @@ void wxMidiSettingsDlg::CreateControls()
     itemBoxSizer7->Add(_outputChannelText, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _outputChannelSpin = new wxBitmapSpinButton( itemDialog1, ID_OUTPUTCHANNELSPIN, wxDefaultPosition, wxSize( 16, 22 ), wxSP_ARROW_KEYS );
-    _outputChannelSpin->SetBitmap( &spinImage );
+    _outputChannelSpin->SetXpmBitmap( spin_xpm );
     itemBoxSizer7->Add(_outputChannelSpin, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 	itemBoxSizer3->Add(itemBoxSizer7, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 

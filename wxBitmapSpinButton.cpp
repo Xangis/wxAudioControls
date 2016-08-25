@@ -73,3 +73,17 @@ void wxBitmapSpinButton::SetBitmap( wxBitmap * image)
 	_image = image->ConvertToImage();
     //_lightLock.unlock();
 }
+
+/**
+    @brief  Set bitmap for drawing button using an XPM as const char data.
+*/
+void wxBitmapSpinButton::SetXpmBitmap( char** image)
+{
+    if( !image )
+    {
+        return;
+    }
+    //_lightLock.lock();
+	_image = wxBitmap(image, wxBITMAP_TYPE_XPM).ConvertToImage();
+    //_lightLock.unlock();
+}

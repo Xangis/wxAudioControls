@@ -17,6 +17,9 @@
 #include "wx/wx.h"
 #endif
 
+#include "sliderbk.xpm"
+#include "sliderind.xpm"
+
 IMPLEMENT_DYNAMIC_CLASS( wxLFODlg, wxPanel )
 
 BEGIN_EVENT_TABLE( wxLFODlg, wxPanel )
@@ -62,11 +65,6 @@ void wxLFODlg::CreateControls()
 {    
     wxLFODlg* itemDialog1 = this;
 
-    wxImage sliderBk;
-    sliderBk.LoadFile( _("hsliderbk.bmp"), wxBITMAP_TYPE_BMP );
-    wxImage sliderInd;
-    sliderInd.LoadFile( _("hsliderind.bmp"), wxBITMAP_TYPE_BMP );
-
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemDialog1->SetSizer(itemBoxSizer2);
 
@@ -78,7 +76,7 @@ void wxLFODlg::CreateControls()
     itemBoxSizer3->Add(_staticText1, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
 
 	_slFrequency = new wxBitmapSlider( itemDialog1, ID_LFO_FREQUENCY, 0, 0, 200, wxDefaultPosition, wxSize(211,24) );
-	_slFrequency->SetBitmaps(&sliderBk, &sliderInd);
+	_slFrequency->SetXpmBitmaps(sliderbk_xpm, sliderind_xpm);
 	itemBoxSizer3->Add(_slFrequency, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_txtFrequency = new wxStaticText( itemDialog1, ID_TXT_FREQUENCY, _("0.0"), wxDefaultPosition, wxSize(32, -1));

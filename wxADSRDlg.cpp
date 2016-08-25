@@ -16,6 +16,9 @@
 #include "wx/wx.h"
 #endif
 
+#include "sliderbk.xpm"
+#include "sliderind.xpm"
+
 IMPLEMENT_DYNAMIC_CLASS( wxADSRDlg, wxDialog )
 
 BEGIN_EVENT_TABLE( wxADSRDlg, wxDialog )
@@ -72,11 +75,6 @@ void wxADSRDlg::CreateControls()
 {    
     wxADSRDlg* itemDialog1 = this;
 
-    wxImage sliderBk;
-    sliderBk.LoadFile( _("hsliderbk.bmp"), wxBITMAP_TYPE_BMP );
-    wxImage sliderInd;
-    sliderInd.LoadFile( _("hsliderind.bmp"), wxBITMAP_TYPE_BMP );
-
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemDialog1->SetSizer(itemBoxSizer2);
 
@@ -88,7 +86,7 @@ void wxADSRDlg::CreateControls()
     itemBoxSizer3->Add(_staticText1, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
 
 	_slAttack = new wxBitmapSlider( itemDialog1, ID_ADSR_ATTACK, 0, 0, 1000, wxDefaultPosition, wxSize(211,24) );
-	_slAttack->SetBitmaps(&sliderBk, &sliderInd);
+	_slAttack->SetXpmBitmaps(sliderbk_xpm, sliderind_xpm);
 	itemBoxSizer3->Add(_slAttack, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _txtAttack = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
@@ -100,7 +98,7 @@ void wxADSRDlg::CreateControls()
     itemBoxSizer3->Add(_staticText2, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
 
 	_slDecay = new wxBitmapSlider( itemDialog1, ID_ADSR_DECAY, 0, 0, 1000, wxDefaultPosition, wxSize(211,24));
-	_slDecay->SetBitmaps(&sliderBk, &sliderInd);
+	_slDecay->SetXpmBitmaps(sliderbk_xpm, sliderind_xpm);
 	itemBoxSizer3->Add(_slDecay, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _txtDecay = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
@@ -112,7 +110,7 @@ void wxADSRDlg::CreateControls()
     itemBoxSizer3->Add(_staticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
 
 	_slSustain = new wxBitmapSlider( itemDialog1, ID_ADSR_SUSTAIN, 0, 0, 100, wxDefaultPosition, wxSize(211,24));
-	_slSustain->SetBitmaps(&sliderBk, &sliderInd);
+	_slSustain->SetXpmBitmaps(sliderbk_xpm, sliderind_xpm);
 	itemBoxSizer3->Add(_slSustain, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _txtSustain = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
@@ -124,7 +122,7 @@ void wxADSRDlg::CreateControls()
     itemBoxSizer3->Add(_staticText4, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
 
 	_slRelease = new wxBitmapSlider( itemDialog1, ID_ADSR_RELEASE, 0, 0, 500, wxDefaultPosition, wxSize(211,24));
-	_slRelease->SetBitmaps(&sliderBk, &sliderInd);
+	_slRelease->SetXpmBitmaps(sliderbk_xpm , sliderind_xpm);
 	itemBoxSizer3->Add(_slRelease, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _txtRelease = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );

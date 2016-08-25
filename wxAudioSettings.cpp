@@ -61,9 +61,7 @@ void wxAudioSettings::CreateControls()
 {    
     wxAudioSettings* itemDialog1 = this;
 
-	wxImage spinImage;
-    wxString spinPath = _("%s\\spin.bmp");
-    spinImage.LoadFile( spinPath, wxBITMAP_TYPE_BMP );
+	//wxImage spinImage;
 
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemDialog1->SetSizer(itemBoxSizer2);

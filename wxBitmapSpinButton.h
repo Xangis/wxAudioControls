@@ -24,6 +24,7 @@ public:
 	// We can pass in a bitmap or an image in order to create custom knobs.
 	void SetBitmap( wxBitmap * image);
 	void SetBitmap( wxImage * image);
+	void SetXpmBitmap( char** image);
 	DECLARE_EVENT_TABLE();
 private:
    	wxImage _image;

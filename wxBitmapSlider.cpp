@@ -285,6 +285,21 @@ void wxBitmapSlider::SetBitmaps( wxBitmap* backgroundImage, wxBitmap* indicatorI
     // Need to do a wxMutex.unlock() here;
 }
 
+/**
+    @brief  Set bitmap for drawing using const char XPM data.
+*/
+void wxBitmapSlider::SetXpmBitmaps( char** backgroundImage, char** indicatorImage )
+{
+    if( !backgroundImage || !indicatorImage )
+    {
+        return;
+    }
+    // Need to do a wxMutex.lock() here;
+	_backgroundImage = wxBitmap(backgroundImage, wxBITMAP_TYPE_XPM).ConvertToImage();
+    _indicatorImage = wxBitmap(indicatorImage, wxBITMAP_TYPE_XPM).ConvertToImage();
+    // Need to do a wxMutex.unlock() here;
+}
+
 void wxBitmapSlider::OnKeyDown( wxKeyEvent& event )
 {
 	wxWindow* parent = this->GetParent();
