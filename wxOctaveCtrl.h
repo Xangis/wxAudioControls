@@ -20,6 +20,8 @@ public:
     int GetNoteFromLocation( wxPoint& location );
 	void NoteIndicatorOn( int note );
 	void NoteIndicatorOff( int note );
+	void IndicatorOn( int note );
+	void IndicatorOff( int note );
 	void SetBitmaps( wxBitmap* smallKeyBitmap, wxBitmap* largeKeyBitmap );
 	void TurnOffAll(void);
 	void SetIndicators(bool * indicators);
@@ -27,7 +29,9 @@ public:
 private:
 	void NoteOn( int note );
 	void NoteOff( int note );
+	// Should an "is playing" indicator light up for the key?
 	bool _playing[12];
+	// Should a secondary indicator light up for the key? ("has sample specified" or whatever)
 	bool _indicator[12];
     wxBitmap _bitmap;
 	OctaveCallback* _parent;

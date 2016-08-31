@@ -117,18 +117,18 @@ void wxOctaveCtrl::OnPaint(wxPaintEvent&)
 		if( _playing[11] == true ) dc.DrawBitmap(*_largeKeyIndicator, 121, 69, true );
 	}
 	dc.SetBrush( *wxBLUE_BRUSH );
-	if( _indicator[0] == true ) dc.DrawCircle( 11, 75, 7 );
-	if( _indicator[1] == true ) dc.DrawCircle( 19, 45, 5 );
-	if( _indicator[2] == true ) dc.DrawCircle( 30, 75, 7 );
-	if( _indicator[3] == true ) dc.DrawCircle( 42, 45, 5 );
-	if( _indicator[4] == true ) dc.DrawCircle( 50, 75, 7 );
-	if( _indicator[5] == true ) dc.DrawCircle( 69, 75, 7 );
-	if( _indicator[6] == true ) dc.DrawCircle( 77, 45, 5 );
-	if( _indicator[7] == true ) dc.DrawCircle( 89, 75, 7 );
-	if( _indicator[8] == true ) dc.DrawCircle( 98, 45, 5 );
-	if( _indicator[9] == true ) dc.DrawCircle( 108, 75, 7 );
-	if( _indicator[10] == true ) dc.DrawCircle( 120, 45, 5 );
-	if( _indicator[11] == true ) dc.DrawCircle( 128, 75, 7 );
+	if( _indicator[0] == true ) dc.DrawRectangle( 1, 0, 11, 13 );
+	if( _indicator[1] == true ) dc.DrawRectangle( 13, 0, 11, 13 );
+	if( _indicator[2] == true ) dc.DrawRectangle( 25, 0, 11, 13 );
+	if( _indicator[3] == true ) dc.DrawRectangle( 37, 0, 11, 13 );
+	if( _indicator[4] == true ) dc.DrawRectangle( 48, 0, 11, 13 );
+	if( _indicator[5] == true ) dc.DrawRectangle( 60, 0, 11, 13 );
+	if( _indicator[6] == true ) dc.DrawRectangle( 72, 0, 11, 13 );
+	if( _indicator[7] == true ) dc.DrawRectangle( 81, 0, 11, 13 );
+	if( _indicator[8] == true ) dc.DrawRectangle( 93, 0, 11, 13 );
+	if( _indicator[9] == true ) dc.DrawRectangle( 104, 0, 11, 13 );
+	if( _indicator[10] == true ) dc.DrawRectangle( 115, 0, 11, 13 );
+	if( _indicator[11] == true ) dc.DrawRectangle( 126, 0, 11, 13 );
 }
 
 void wxOctaveCtrl::NoteOn( int note )
@@ -148,6 +148,12 @@ void wxOctaveCtrl::NoteIndicatorOn( int note )
 	Refresh();
 }
 
+void wxOctaveCtrl::IndicatorOn( int note )
+{
+	_indicator[note] = true;
+	Refresh();
+}
+
 void wxOctaveCtrl::NoteOff( int note )
 {
 	if( note < 0 || note > 11 )
@@ -161,6 +167,12 @@ void wxOctaveCtrl::NoteOff( int note )
 void wxOctaveCtrl::NoteIndicatorOff( int note )
 {
 	_playing[note] = false;
+	Refresh();
+}
+
+void wxOctaveCtrl::IndicatorOff( int note )
+{
+	_indicator[note] = false;
 	Refresh();
 }
 
