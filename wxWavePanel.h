@@ -1,7 +1,7 @@
 #pragma once
 
 #include "wx/wx.h"
-#include "wavefile.h"
+#include "../AudioFile/wavefile.h"
 #include <vector>
 
 class wxWavePanel: public wxPanel
