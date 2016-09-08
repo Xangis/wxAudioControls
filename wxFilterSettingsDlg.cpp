@@ -167,12 +167,16 @@ XAUDIO2_FILTER_PARAMETERS wxFilterSettingsDlg::GetFilterParameters()
 	{
 	case 0:
 		parameters.Type = LowPassFilter;
+		break;
 	case 1:
 		parameters.Type = BandPassFilter;
+		break;
 	case 2:
 		parameters.Type = HighPassFilter;
+		break;
 	case 3:
 		parameters.Type = NotchFilter;
+		break;
 	}
 	parameters.Frequency = ((float)_slFrequency->GetValue() / (float)_slFrequency->GetMax());
 	parameters.OneOverQ = ((float)_slQFactor->GetValue() / (float)_slQFactor->GetMax());
@@ -185,12 +189,16 @@ void wxFilterSettingsDlg::SetFilterParameters(XAUDIO2_FILTER_PARAMETERS paramete
 	{
 	case LowPassFilter:
 		_filterType->SetSelection(0);
+		break;
 	case BandPassFilter:
 		_filterType->SetSelection(1);
+		break;
 	case HighPassFilter:
 		_filterType->SetSelection(2);
+		break;
 	case NotchFilter:
 		_filterType->SetSelection(3);
+		break;
 	}
 	_slFrequency->SetValue(parameters.Frequency * (float)_slFrequency->GetMax());
 	_slQFactor->SetValue(parameters.OneOverQ * (float)_slQFactor->GetMax());
