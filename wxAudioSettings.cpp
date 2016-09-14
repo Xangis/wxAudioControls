@@ -13,6 +13,8 @@
 #include "wx/wx.h"
 #endif
 
+#include "spin.xpm"
+
 IMPLEMENT_DYNAMIC_CLASS( wxAudioSettings, wxDialog )
 
 BEGIN_EVENT_TABLE( wxAudioSettings, wxDialog )
@@ -58,10 +60,10 @@ bool wxAudioSettings::Create( wxWindow* parent, AudioSettingsInterface* callback
 }
 
 void wxAudioSettings::CreateControls()
-{    
+{
     wxAudioSettings* itemDialog1 = this;
 
-	//wxImage spinImage;
+	wxImage spinImage(spin_xpm);
 
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemDialog1->SetSizer(itemBoxSizer2);

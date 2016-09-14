@@ -313,3 +313,15 @@ void wxMidiSettingsDlg::SetMidiOutputChannel(int channel)
 	if( channel > 0 && channel < 17 )
 		_outputChannelText->SetLabel(wxString::Format(_("%d"), channel ));
 }
+
+void wxMidiSettingsDlg::SetSpinBitmap( char** xpmdata )
+{
+    if( !xpmdata )
+    {
+        return;
+    }
+    // Need to do a wxMutex.lock() here;
+	this->_inputChannelSpin->SetXpmBitmap(xpmdata);
+	this->_outputChannelSpin->SetXpmBitmap(xpmdata);
+    // Need to do a wxMutex.unlock() here;
+}

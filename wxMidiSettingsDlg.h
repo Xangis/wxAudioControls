@@ -10,7 +10,7 @@
 #include "MidiSettingsInterface.h"
 #include "wxSwitch.h"
 
-#define ID_MIDISETTINGS_DLG 14000
+#define ID_MIDISETTINGS_DLG 34000
 #define SYMBOL_wxMidiSettingsDlg_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
 #define SYMBOL_wxMidiSettingsDlg_TITLE _("MIDI Settings")
 #define SYMBOL_wxMidiSettingsDlg_IDNAME ID_MIDISETTINGS_DLG
@@ -51,6 +51,7 @@ public:
 	void SetMidiOutputDeviceIndex(unsigned int index);
 	void SetMidiInputChannel(int channel);
 	void SetMidiOutputChannel(int channel);
+	void SetSpinBitmap(char** xpmdata);
 private:
 	wxKeylessChoice* _outDevice;
     wxKeylessChoice* _inDevice;

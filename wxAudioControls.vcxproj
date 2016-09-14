@@ -91,7 +91,7 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Demo Debug|Win32'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Demo Debug|Win32'">$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">Demo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">.\Demo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">Demo\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Demo Debug VST|Win32'">$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Demo Debug VST|Win32'">$(Configuration)\</IntDir>
@@ -194,6 +194,7 @@
     <ClCompile Include="wxKeylessChoice.cpp" />
     <ClCompile Include="wxKnob.cpp" />
     <ClCompile Include="wxLFODlg.cpp" />
+    <ClCompile Include="wxMidiLogger.cpp" />
     <ClCompile Include="wxMidiSettingsDlg.cpp" />
     <ClCompile Include="wxOctaveCtrl.cpp" />
     <ClCompile Include="wxRotarySelector.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="wxKeylessChoice.h" />
     <ClInclude Include="wxKnob.h" />
     <ClInclude Include="wxLFODlg.h" />
+    <ClInclude Include="wxMidiLogger.h" />
     <ClInclude Include="wxMidiSettingsDlg.h" />
     <ClInclude Include="wxOctaveCtrl.h" />
     <ClInclude Include="wxRotarySelector.h" />
