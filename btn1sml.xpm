@@ -1,5 +1,5 @@
 /* XPM */
-static char * btn1sml_xpm[] = {
+static const char * btn1sml_xpm[] = {
 "11 11 54 1",
 " 	c None",
 ".	c #F5463D",

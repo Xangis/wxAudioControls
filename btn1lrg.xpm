@@ -1,5 +1,5 @@
 /* XPM */
-static char * btn1lrg_xpm[] = {
+static const char * btn1lrg_xpm[] = {
 "14 14 75 1",
 " 	c None",
 ".	c #F91C11",

@@ -1,5 +1,5 @@
 /* XPM */
-static char * sliderbk_xpm[] = {
+static const char * sliderbk_xpm[] = {
 "30 108 159 2",
 "  	c #000828",
 ". 	c #000000",

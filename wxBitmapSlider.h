@@ -33,7 +33,7 @@ public:
 	// We can pass in a bitmap or an image in order to create custom knobs.
 	void SetBitmaps( wxBitmap* backgroundImage, wxBitmap* indicatorImage );
 	void SetBitmaps( wxImage* backgroundImage, wxImage* indicatorImage );
-	void SetXpmBitmaps( char** backgroundImage, char ** indicatorImage );
+	void SetXpmBitmaps( const char** backgroundImage, const char ** indicatorImage );
 	virtual bool AcceptsFocusFromKeyboard() const { return false; } 
 	virtual bool AcceptsFocus() const { return false; }
 	DECLARE_EVENT_TABLE();

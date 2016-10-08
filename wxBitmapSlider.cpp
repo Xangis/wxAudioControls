@@ -288,7 +288,7 @@ void wxBitmapSlider::SetBitmaps( wxBitmap* backgroundImage, wxBitmap* indicatorI
 /**
     @brief  Set bitmap for drawing using const char XPM data.
 */
-void wxBitmapSlider::SetXpmBitmaps( char** backgroundImage, char** indicatorImage )
+void wxBitmapSlider::SetXpmBitmaps( const char** backgroundImage, const char** indicatorImage )
 {
     if( !backgroundImage || !indicatorImage )
     {

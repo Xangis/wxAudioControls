@@ -1,5 +1,5 @@
 /* XPM */
-static char * spin_xpm[] = {
+static const char * spin_xpm[] = {
 "16 22 55 1",
 " 	c #000828",
 ".	c #515B7A",

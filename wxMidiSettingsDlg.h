@@ -51,7 +51,7 @@ public:
 	void SetMidiOutputDeviceIndex(unsigned int index);
 	void SetMidiInputChannel(int channel);
 	void SetMidiOutputChannel(int channel);
-	void SetSpinBitmap(char** xpmdata);
+	void SetSpinBitmap(const char** xpmdata);
 private:
 	wxKeylessChoice* _outDevice;
     wxKeylessChoice* _inDevice;
