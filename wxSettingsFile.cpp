@@ -20,7 +20,7 @@ wxString wxSettingsFile::GetValue(wxString key)
 	{
 		if (child->GetName() == key) 
 		{
-			wxXmlProperty* prop = child->GetProperties();
+			wxXmlAttribute* prop = child->GetAttributes();
 			while( prop != NULL )
 			{
 				if( prop->GetName() == key )
@@ -63,7 +63,7 @@ void wxSettingsFile::SetValue(wxString key, wxString value)
 		child = child->GetNext();
 	}
 	wxXmlNode* newNode = new wxXmlNode(wxXML_ELEMENT_NODE, key);
-	newNode->AddProperty(key, value);
+	newNode->AddAttribute(key, value);
 	child = node->GetChildren();
 	node->InsertChild(newNode, child);
 }

@@ -22,6 +22,16 @@ END_EVENT_TABLE()
 
 wxMidiSettingsDlg::wxMidiSettingsDlg( )
 {
+    _callback = NULL;
+    _btnClose = NULL;
+    _chkMidiOutEnabled = NULL;
+    _inDevice = NULL;
+    _outDevice = NULL;
+    _txtMidiOutputEnabled = NULL;
+    _txtMidiOutputDevice = NULL;
+    _txtMidiOutputChannel = NULL;
+    _txtMidiInputChannel = NULL;
+    _txtMidiInputDevice = NULL;
 }
 
 wxMidiSettingsDlg::~wxMidiSettingsDlg()
@@ -69,11 +79,15 @@ void wxMidiSettingsDlg::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer3, 0, 0, 0 );
 
     _txtMidiOutputDevice = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Out Device:"), wxDefaultPosition, wxDefaultSize, 0 );
-    itemBoxSizer3->Add(_txtMidiOutputDevice, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtMidiOutputDevice, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	// Look for MIDI output devices before creating choice box.
-    int numDevices = _callback->_midiOutDevice->getPortCount();
-	int count;
+    int numDevices = 0;
+    if( _callback != NULL && _callback->_midiOutDevice != NULL )
+    {
+        int numDevices = _callback->_midiOutDevice->getPortCount();
+    }
+    int count;
 	wxArrayString outDeviceList;
 	for( count = 0; count < numDevices; count++ )
 	{
@@ -88,16 +102,20 @@ void wxMidiSettingsDlg::CreateControls()
 	}
 
     _txtMidiInputDevice = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI In Device:"), wxDefaultPosition, wxDefaultSize, 0 );
-    itemBoxSizer3->Add(_txtMidiInputDevice, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtMidiInputDevice, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-	// Look for MIDI input devices before creating choice box.
-    numDevices = _callback->_midiInDevice->getPortCount();
+    // Look for MIDI input devices before creating choice box.
+    numDevices = 0;
+    if( _callback != NULL && _callback->_midiInDevice != NULL )
+    {
+        numDevices = _callback->_midiInDevice->getPortCount();
+    }
 	wxArrayString inDeviceList;
 	for( count = 0; count < numDevices; count++ )
 	{
-        inDeviceList.Add( wxString::FromAscii(_callback->_midiInDevice->getPortName(count).c_str()) );
+            inDeviceList.Add( wxString::FromAscii(_callback->_midiInDevice->getPortName(count).c_str()) );
 	}
-    _inDevice = new wxKeylessChoice( itemDialog1, ID_MIDI_IN_DEVICE, wxDefaultPosition, wxDefaultSize, inDeviceList );
+        _inDevice = new wxKeylessChoice( itemDialog1, ID_MIDI_IN_DEVICE, wxDefaultPosition, wxDefaultSize, inDeviceList );
 	if( numDevices > 0 )
 	{
 		_inDevice->SetSelection(0);
@@ -109,7 +127,7 @@ void wxMidiSettingsDlg::CreateControls()
     itemBoxSizer3->Add(_inDevice, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 
     _txtMidiInputChannel = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Input Channel:"), wxDefaultPosition, wxDefaultSize, 0 );
-    itemBoxSizer3->Add(_txtMidiInputChannel, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtMidiInputChannel, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     _inputChannelText = new wxStaticText( itemDialog1, ID_INPUTCHANNELTEXT, _T("1"), wxDefaultPosition, wxSize( 22, -1 ), 0 );
@@ -121,7 +139,7 @@ void wxMidiSettingsDlg::CreateControls()
 	itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     _txtMidiOutputChannel = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Output Channel:"), wxDefaultPosition, wxDefaultSize );
-    itemBoxSizer3->Add(_txtMidiOutputChannel, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtMidiOutputChannel, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxBoxSizer* itemBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
     _outputChannelText = new wxStaticText( itemDialog1, ID_OUTPUTCHANNELTEXT, _T("1"), wxDefaultPosition, wxSize( 22, -1 ), 0 );
@@ -133,7 +151,7 @@ void wxMidiSettingsDlg::CreateControls()
 	itemBoxSizer3->Add(itemBoxSizer7, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
 	_txtMidiOutputEnabled = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Output Enabled:"), wxDefaultPosition, wxDefaultSize );
-    itemBoxSizer3->Add(_txtMidiOutputEnabled, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtMidiOutputEnabled, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxBitmap* bitmap1 = new wxBitmap(greenbtn_xpm, wxBITMAP_TYPE_XPM );
 	wxBitmap* bitmap2 = new wxBitmap(darkbtn_xpm, wxBITMAP_TYPE_XPM );
@@ -175,9 +193,12 @@ bool wxMidiSettingsDlg::SetForegroundColour(const wxColour &colour)
 bool wxMidiSettingsDlg::SetBackgroundColour(const wxColour &colour)
 {
 	_backgroundColour = colour;
-	_outDevice->SetBackgroundColour(_backgroundColour);
-	_inDevice->SetBackgroundColour(_backgroundColour);
-	_btnClose->SetBackgroundColour(_backgroundColour);
+        if( _outDevice != NULL && _inDevice != NULL && _btnClose != NULL )
+        {
+	    _outDevice->SetBackgroundColour(_backgroundColour);
+	    _inDevice->SetBackgroundColour(_backgroundColour);
+	    _btnClose->SetBackgroundColour(_backgroundColour);
+        }
 	wxDialog::SetBackgroundColour(colour);
 	Refresh();
 	return true;
@@ -307,7 +328,7 @@ void wxMidiSettingsDlg::SetMidiOutputChannel(int channel)
 		_outputChannelText->SetLabel(wxString::Format(_("%d"), channel ));
 }
 
-void wxMidiSettingsDlg::SetSpinBitmap( char** xpmdata )
+void wxMidiSettingsDlg::SetSpinBitmap( const char** xpmdata )
 {
     if( !xpmdata )
     {

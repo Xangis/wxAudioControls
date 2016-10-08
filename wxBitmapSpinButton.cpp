@@ -77,7 +77,7 @@ void wxBitmapSpinButton::SetBitmap( wxBitmap * image)
 /**
     @brief  Set bitmap for drawing button using an XPM as const char data.
 */
-void wxBitmapSpinButton::SetXpmBitmap( char** image)
+void wxBitmapSpinButton::SetXpmBitmap( const char** image)
 {
     if( !image )
     {
