@@ -17,7 +17,9 @@ public:
     void Create( wxWindow* parent, wxWindowID id, const wxString& value = wxEmptyString,
         const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxSP_ARROW_KEYS,
 		int min = 0, int max = 100, int initial = 0);
+#ifdef WIN32
 	void OnPaint( wxPaintEvent& event );
+#endif
 	void OnKeyDown( wxKeyEvent& event );
 	void OnKeyUp( wxKeyEvent& event );
 	DECLARE_EVENT_TABLE();
