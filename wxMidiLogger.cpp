@@ -50,10 +50,10 @@ void wxMidiLogger::CreateControls()
     itemBoxSizer2->Add(gridSizer, 0, 0, 0 );
 
     _inputChannelText = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI In Messages:"), wxDefaultPosition, wxDefaultSize, 0 );
-    gridSizer->Add(_inputChannelText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    gridSizer->Add(_inputChannelText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _outputChannelText = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Out Messages:"), wxDefaultPosition, wxDefaultSize, 0 );
-    gridSizer->Add(_outputChannelText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    gridSizer->Add(_outputChannelText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_inputMessages = new wxListBox( itemDialog1, ID_INPUTMESSAGES, wxDefaultPosition, wxSize(240, 240) );
     gridSizer->Add(_inputMessages, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
