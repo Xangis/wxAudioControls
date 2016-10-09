@@ -1,0 +1,7 @@
+Controls Needed:
+
+2. Convert wxwxWavePanel found in SampleSplitter into a wxControl item.
+   The problem is that WaveFile is a member, and it depends upon libsndfile.
+3. Create wxFloatSlider, a wxSlider that allows float values.
+4. Create wxFader, a logarithmic wxBitmapSlider.
+6. Fix the drawing routines on wxBitmapSlider.

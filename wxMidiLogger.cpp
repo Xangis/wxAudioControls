@@ -1,18 +1,6 @@
 #include "wxMidiLogger.h"
 #include "wx/stdpaths.h"
 
-// For compilers that support precompilation, includes "wx/wx.h".
-#include "wx/wxprec.h"
-
-#ifndef WX_PRECOMP
-#include "wx/wx.h"
-#endif
-
-// Image resources
-#include "greenbtn.xpm"
-#include "darkbtn.xpm"
-#include "spin.xpm"
-
 IMPLEMENT_DYNAMIC_CLASS( wxMidiLogger, wxDialog )
 
 BEGIN_EVENT_TABLE( wxMidiLogger, wxDialog )
