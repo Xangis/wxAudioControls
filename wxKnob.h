@@ -2,16 +2,12 @@
 
 #include "wx/wx.h"
 
-/// For compilers that support precompilation, includes "wx/wx.h".
-#include "wx/wxprec.h"
 #include "wx/image.h"
 
-#ifndef WX_PRECOMP
     #include "wx/control.h"
     #include "wx/settings.h"
     #include "wx/dc.h"
     #include "wx/dcclient.h"
-#endif // WX_PRECOMP
 
 /** 
      @brief     This class implements the wxKnob Control.

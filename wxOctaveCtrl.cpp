@@ -82,7 +82,10 @@ void wxOctaveCtrl::SetBitmaps( wxBitmap* smallKeyBitmap, wxBitmap* largeKeyBitma
 void wxOctaveCtrl::OnPaint(wxPaintEvent&)
 {
     wxPaintDC dc(this);
-	dc.DrawBitmap( _bitmap, 0, 0, true );
+	if( _bitmap.IsOk() )
+	{
+		dc.DrawBitmap( _bitmap, 0, 0, true );
+	}
 	// TODO: Draw something special on each key if a specific note is playing.
 	dc.SetBrush( *wxRED_BRUSH );
 	dc.SetPen( *wxBLACK_PEN );

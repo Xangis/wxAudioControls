@@ -6,16 +6,10 @@
 #pragma implementation "wxLFODlg.h"
 #endif
 
-// For compilers that support precompilation, includes "wx/wx.h".
-#include "wx/wxprec.h"
-
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
 
-#ifndef WX_PRECOMP
-#include "wx/wx.h"
-#endif
 
 #include "sliderbk.xpm"
 #include "sliderind.xpm"
