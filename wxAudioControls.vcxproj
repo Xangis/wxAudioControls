@@ -201,6 +201,7 @@
     <ClCompile Include="wxSelectableBitmap.cpp" />
     <ClCompile Include="wxSettingsFile.cpp" />
     <ClCompile Include="wxSwitch.cpp" />
+    <ClCompile Include="wxVectorDlg.cpp" />
     <ClCompile Include="wxVolumeMeter.cpp" />
     <ClCompile Include="wxWavePanel.cpp" />
     <ClCompile Include="wxWaveVisualizer.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="wxSelectableBitmap.h" />
     <ClInclude Include="wxSettingsFile.h" />
     <ClInclude Include="wxSwitch.h" />
+    <ClInclude Include="wxVectorDlg.h" />
     <ClInclude Include="wxVolumeMeter.h" />
     <ClInclude Include="wxWavePanel.h" />
     <ClInclude Include="wxWaveVisualizer.h" />
