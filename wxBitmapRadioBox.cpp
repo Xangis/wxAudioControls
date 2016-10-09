@@ -3,22 +3,18 @@
 #include "wx/dcclient.h"
 #include "wx/dcmemory.h"
 
-BEGIN_EVENT_TABLE(wxBitmapRadioBox, wxControlWithItems)
+BEGIN_EVENT_TABLE(wxBitmapRadioBox, wxRadioBox)
     EVT_KEY_DOWN(wxBitmapRadioBox::OnKeyDown)
     EVT_KEY_UP(wxBitmapRadioBox::OnKeyUp)
     EVT_PAINT(wxBitmapRadioBox::OnPaint)
     EVT_LEFT_DOWN(wxBitmapRadioBox::OnClick)
 END_EVENT_TABLE()
 
-void wxBitmapRadioBox::Create(wxWindow* parent, wxWindowID id, const wxString &label, wxArrayString choices, const wxPoint &pos, const wxSize &size, int, long style)
+void wxBitmapRadioBox::Create(wxWindow* parent, wxWindowID id, const wxString &label, const wxPoint &pos, const wxSize &size, wxArrayString choices, int, long style)
 {
-    _label = label;
-    _selectedItem = -1;
-    _style = style;
-    _showBorder = true;
-    _numItems = choices.Count();
     _itemList = choices;
-    wxControlWithItems::Create( parent, id, pos, size, wxBORDER_NONE );
+	_label = label;
+    wxRadioBox::Create( parent, id, label, pos, size, choices, 0, style|wxBORDER_NONE);
 }
 
 void wxBitmapRadioBox::OnPaint( wxPaintEvent& event )
@@ -42,10 +38,10 @@ void wxBitmapRadioBox::OnPaint( wxPaintEvent& event )
     dc.GetTextExtent(_label, &x, &y, 0, 0, &font);
     dc.DrawRectangle(9, 0, x+2, y );
     dc.DrawText(_label, 9, 0);
-    for( int count = 0; count < _numItems; count++ )
+    for( int count = 0; count < GetCount(); count++ )
     {
 	    // Figure out whether to draw the on image or the off image.
-	    if( _selectedItem == count )
+	    if( GetSelection() == count )
 	    {
             if( _onImage.Ok() )
             {
@@ -54,9 +50,9 @@ void wxBitmapRadioBox::OnPaint( wxPaintEvent& event )
             }
             else
             {
-                dc.SetPen(*wxBLACK_PEN);
-                dc.SetBrush(*wxRED_BRUSH);
-                dc.DrawCircle(13, (count*20+26), 7);
+                dc.SetPen(fg);
+                dc.SetBrush(bg);
+                dc.DrawCircle(13, 7, (count*20+26));
             }
 	    }
 	    else
@@ -68,35 +64,16 @@ void wxBitmapRadioBox::OnPaint( wxPaintEvent& event )
             }
             else
             {
-                dc.SetPen(*wxBLACK_PEN);
-                dc.SetBrush(*wxGREY_BRUSH);
-                dc.DrawCircle(13, (count*20+26), 7);
+                dc.SetPen(fg);
+                dc.SetBrush(bg);
+                dc.DrawCircle(13, 7, (count*20+26));
             }
 	    }
+        dc.SetPen(fg);
+        dc.SetBrush(bg);
         dc.DrawText(_itemList[count], 25, (count*20+19));
     }
 	event.Skip(true);
-}
-
-/**
-* This is required to prevent the control from defaulting to size 80,100.
-*/
-wxSize wxBitmapRadioBox::DoGetBestSize() const
-{
-    wxFont font(8, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Arial"));
-    int x = 0;
-    int y = 0;
-    int width = 0;
-    wxMemoryDC dc;
-    for( int count = 0; count < _numItems; count++ )
-    {
-        dc.GetTextExtent(_itemList[count], &x, &y, 0, 0, &font);
-        if( x > width )
-            width = x;
-    }
-    y = _numItems * 20 + 24;
-    x = width + 34;
-	return wxSize(x, y);
 }
 
 void wxBitmapRadioBox::OnKeyDown( wxKeyEvent& event )
@@ -149,107 +126,6 @@ void wxBitmapRadioBox::SetBitmaps( wxBitmap * onImage, wxBitmap * offImage )
     //_lightLock.unlock();
 }
 
-unsigned int wxBitmapRadioBox::GetCount() const
-{
-    return _numItems;
-}
-
-wxString wxBitmapRadioBox::GetString(unsigned int selection) const
-{
-    if( selection >= 0 && selection < _numItems )
-    {
-        return _itemList[selection];
-    }
-    return wxEmptyString;
-}
-
-void wxBitmapRadioBox::SetString(unsigned int selection, const wxString& string)
-{
-    if( selection >= 0 && selection < _numItems )
-    {
-        _itemList[selection] = string;
-    }
-    Refresh();
-}
-
-void wxBitmapRadioBox::SetSelection(int selection)
-{
-    if( selection >= -1 && selection < _numItems )
-    {
-        _selectedItem = selection;
-    }
-    Refresh();
-}
-
-int wxBitmapRadioBox::GetSelection() const
-{
-    return _selectedItem;
-}
-
-void wxBitmapRadioBox::Clear()
-{
-    _numItems = 0;
-    _selectedItem = -1;
-    _itemList.Clear();
-    Refresh();
-}
-
-void wxBitmapRadioBox::Delete(unsigned int selection)
-{
-    if( selection >= -1 && selection < _numItems )
-    {
-        if( selection == _selectedItem )
-        {
-            _selectedItem = -1;
-        }
-        _itemList.RemoveAt(selection,1);
-        --_numItems;
-    }
-    Refresh();
-}
-
-int wxBitmapRadioBox::DoAppend(const wxString& name)
-{
-    _itemList.Add(name);
-    ++_numItems;
-    Refresh();
-    return _numItems;
-}
-
-int wxBitmapRadioBox::DoInsert(const wxString& name, unsigned int selection)
-{
-    if( selection >= -1 && selection < _numItems )
-    {
-        if( selection == _selectedItem )
-        {
-            _selectedItem = -1;
-        }
-        _itemList.Insert(name, selection);
-        --_numItems;
-    }
-    Refresh();
-    return _numItems;
-}
-
-// We're not bothering with client data.
-void wxBitmapRadioBox::DoSetItemClientData(unsigned int,void *)
-{
-}
-
-void *wxBitmapRadioBox::DoGetItemClientData(unsigned int) const
-{
-    return NULL;
-}
-
-void wxBitmapRadioBox::DoSetItemClientObject(unsigned int,wxClientData *)
-{
-}
-
-wxClientData *wxBitmapRadioBox::DoGetItemClientObject(unsigned int) const
-{
-    return NULL;
-}
-
 void wxBitmapRadioBox::OnClick(wxMouseEvent& event)
 {
     int x = 0;
@@ -262,19 +138,41 @@ void wxBitmapRadioBox::OnClick(wxMouseEvent& event)
         return;
     }
     int item = y / 20;
-    if( item >= 0 && item < _numItems )
+    if( item >= 0 && item < this->GetCount() )
     {
-        _selectedItem = item;
+        SetSelection(item);
         Refresh();
     }
 
     // Send radio box selected event.
     wxCommandEvent evt(wxEVT_COMMAND_RADIOBOX_SELECTED, m_windowId);
-    evt.SetInt( _selectedItem );
-    if( _selectedItem >= 0 && _selectedItem < _numItems )
+    evt.SetInt( item );
+    if( item >= 0 && item < this->GetCount() )
     {
-        evt.SetString(_itemList[_selectedItem]);
+        evt.SetString(this->_itemList[item]);
     }
     evt.SetEventObject( this );
     ProcessCommand(evt);
 }
+
+/**
+* This is required to prevent the control from defaulting to size 80,100.
+*/
+wxSize wxBitmapRadioBox::DoGetBestSize() const
+{
+    wxFont font(8, wxFONTFAMILY_MODERN, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, _("Arial"));
+    int x = 0;
+    int y = 0;
+    int width = 0;
+    wxMemoryDC dc;
+    for( int count = 0; count < GetCount(); count++ )
+    {
+        dc.GetTextExtent(_itemList[count], &x, &y, 0, 0, &font);
+        if( x > width )
+            width = x;
+    }
+    y = GetCount() * 20 + 24;
+    x = width + 34;
+       return wxSize(x, y);
+}
+
