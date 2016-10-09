@@ -72,7 +72,7 @@ void wxAudioSettings::CreateControls()
     itemBoxSizer2->Add(itemBoxSizer3, 0, 0, 0 );
 
     _txtMidiOutputDevice = new wxStaticText( itemDialog1, wxID_STATIC, _("Audio Out Device:"), wxDefaultPosition, wxDefaultSize, 0 );
-    itemBoxSizer3->Add(_txtMidiOutputDevice, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtMidiOutputDevice, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     int numDevices;
 
