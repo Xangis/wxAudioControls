@@ -2,10 +2,6 @@
 #include "wx/stdpaths.h"
 #include "portaudio.h"
 
-#ifdef __BORLANDC__
-#pragma hdrstop
-#endif
-
 #include "spin.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( wxAudioSettings, wxDialog )
@@ -17,6 +13,10 @@ END_EVENT_TABLE()
 
 wxAudioSettings::wxAudioSettings( )
 {
+    _inText = NULL;
+    _inDevice = NULL;
+    _outText = NULL;
+    _outDevice = NULL;
 }
 
 wxAudioSettings::~wxAudioSettings()
@@ -39,6 +39,8 @@ bool wxAudioSettings::Create( wxWindow* parent, AudioSettingsInterface* callback
     _btnClose = NULL;
     _inDevice = NULL;
     _outDevice = NULL;
+    _inText = NULL;
+    _outText = NULL;
 
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
@@ -60,58 +62,59 @@ void wxAudioSettings::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemDialog1->SetSizer(itemBoxSizer2);
 
-    wxFlexGridSizer* itemBoxSizer3 = new wxFlexGridSizer(5, 2, 0, 0);
+    wxFlexGridSizer* itemBoxSizer3 = new wxFlexGridSizer(2, 2, 0, 0);
     itemBoxSizer2->Add(itemBoxSizer3, 0, 0, 0 );
 
-    int numDevices;
-
-    numDevices = Pa_GetDeviceCount();
+    int numDevices = Pa_GetDeviceCount();
     if( numDevices < 0 )
     {
         wxMessageBox( wxString::Format(_("ERROR: Pa_CountDevices returned 0x%x.\n"), numDevices ) );
     }
 
-    const PaDeviceInfo *deviceInfo;
+    _outText = new wxStaticText( itemDialog1, wxID_STATIC, _("Audio Out Device: "), wxDefaultPosition, wxDefaultSize, 0 );
+    itemBoxSizer3->Add( _outText, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+
     wxArrayString empty;
     _outDevice = new wxKeylessChoice( itemDialog1, ID_MIDI_OUT_DEVICE, wxDefaultPosition, wxDefaultSize, empty );
     itemBoxSizer3->Add(_outDevice, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	if( numDevices == 0 )
-	{
-		_outDevice->Enable(false);
-	}
+    if( numDevices == 0 )
+    {
+        _outDevice->Enable(false);
+    }
 
-    // Get the list of available APIs.  We can use this to select devices by category.
-    //PaHostApiIndex numApis = Pa_GetHostApiCount();
-    //const PaHostApiInfo* apiInfo;
-    //for( int j = 0; j < numApis; j++ )
-    //{
-    //    apiInfo = Pa_GetHostApiInfo(j);
-    //}
+    _inText = new wxStaticText( itemDialog1, wxID_STATIC, _("Audio In Device: "), wxDefaultPosition, wxDefaultSize, 0 );
+    itemBoxSizer3->Add( _inText, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 
+    _inDevice = new wxKeylessChoice( itemDialog1, ID_MIDI_IN_DEVICE, wxDefaultPosition, wxDefaultSize, empty );
+    itemBoxSizer3->Add(_inDevice, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    if( numDevices == 0 )
+    {
+        _inDevice->Enable(false);
+    }
+
+    // Get input and output device details.
+    PaStreamParameters outputParameters;
+    PaStreamParameters inputParameters;
+    const PaDeviceInfo* deviceInfo = NULL;
+    memset( &outputParameters, 0, sizeof( PaStreamParameters ) ); //not necessary if you are filling in all the fields
+    memset( &inputParameters, 0, sizeof( PaStreamParameters ) ); //not necessary if you are filling in all the fields
+    outputParameters.channelCount = 2;
+    outputParameters.hostApiSpecificStreamInfo = NULL;
+    outputParameters.sampleFormat = paFloat32;
+    outputParameters.hostApiSpecificStreamInfo = NULL; // See your specific host's API docs for info on using this field
+    inputParameters.channelCount = 2;
+    inputParameters.hostApiSpecificStreamInfo = NULL;
+    inputParameters.sampleFormat = paFloat32;
+    inputParameters.hostApiSpecificStreamInfo = NULL; // See your specific host's API docs for info on using this field
     for( int i = 0; i < numDevices; i++ )
     {
         deviceInfo = Pa_GetDeviceInfo( i );
-        //int 	structVersion
-        //const char * 	name
-        //PaHostApiIndex 	hostApi
-        //int 	maxInputChannels
-        //int 	maxOutputChannels
-        //PaTime 	defaultLowInputLatency
-        //PaTime 	defaultLowOutputLatency
-        //PaTime 	defaultHighInputLatency
-        //PaTime 	defaultHighOutputLatency
-        //double 	defaultSampleRate
+        outputParameters.suggestedLatency = deviceInfo->defaultLowOutputLatency;
+        outputParameters.device = i;
+        inputParameters.suggestedLatency = deviceInfo->defaultLowInputLatency;
+        inputParameters.device = i;
 
-        PaStreamParameters* outputParameters = new PaStreamParameters;
-        memset( outputParameters, 0, sizeof( PaStreamParameters ) ); //not necessary if you are filling in all the fields
-        outputParameters->channelCount = 2;
-        outputParameters->device = i;
-        outputParameters->hostApiSpecificStreamInfo = NULL;
-        outputParameters->sampleFormat = paFloat32;
-        outputParameters->suggestedLatency = deviceInfo->defaultLowOutputLatency;
-        outputParameters->hostApiSpecificStreamInfo = NULL; //See you specific host's API docs for info on using this field
-
-        int err = Pa_IsFormatSupported( NULL, outputParameters, 44100 );
+        int err = Pa_IsFormatSupported( NULL, &outputParameters, 44100 );
         if( err == paFormatIsSupported )
         {
             int msec = deviceInfo->defaultLowOutputLatency * 1000.0;
@@ -119,12 +122,29 @@ void wxAudioSettings::CreateControls()
             if( msec )
             {
                 _outDevice->Insert(wxString::Format(_("%s (%d ms) [%s]"), wxString::FromAscii(deviceInfo->name).c_str(),
-                    msec, wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)outputParameters );
+                    msec, wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)&outputParameters );
             }
             else
             {
                 _outDevice->Insert(wxString::Format(_("%s [%s]"), wxString::FromAscii(deviceInfo->name).c_str(),
-                    wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)outputParameters );
+                    wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)&outputParameters );
+            }
+        }
+
+        err = Pa_IsFormatSupported( NULL, &inputParameters, 44100 );
+        if( err == paFormatIsSupported )
+        {
+            int msec = deviceInfo->defaultLowInputLatency * 1000.0;
+		    // Add the device to a list box on the GUI.
+            if( msec )
+            {
+                _inDevice->Insert(wxString::Format(_("%s (%d ms) [%s]"), wxString::FromAscii(deviceInfo->name).c_str(),
+                    msec, wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)&inputParameters );
+            }
+            else
+            {
+                _inDevice->Insert(wxString::Format(_("%s [%s]"), wxString::FromAscii(deviceInfo->name).c_str(),
+                    wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)&inputParameters );
             }
         }
     }
@@ -133,11 +153,23 @@ void wxAudioSettings::CreateControls()
     itemBoxSizer2->Add(_btnClose, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 }
 
+void wxAudioSettings::ShowInputDevice(bool state)
+{
+    if( _inDevice != NULL )
+    {
+        _inDevice->Show(state);
+    }
+    if( _inText != NULL )
+    {
+        _inText->Show(state);
+    }
+}
+
 bool wxAudioSettings::SetForegroundColour(const wxColour &colour)
 {
 	_textColour = colour;
 	_outDevice->SetForegroundColour(_textColour);
-	//_inDevice->SetForegroundColour(_textColour);
+	_inDevice->SetForegroundColour(_textColour);
 	_btnClose->SetForegroundColour(_textColour);
 	wxDialog::SetForegroundColour(colour);
 	Refresh();
@@ -146,13 +178,13 @@ bool wxAudioSettings::SetForegroundColour(const wxColour &colour)
 
 bool wxAudioSettings::SetBackgroundColour(const wxColour &colour)
 {
-	_backgroundColour = colour;
-	_outDevice->SetBackgroundColour(_backgroundColour);
-	//_inDevice->SetBackgroundColour(_backgroundColour);
-	_btnClose->SetBackgroundColour(_backgroundColour);
-	wxDialog::SetBackgroundColour(colour);
-	Refresh();
-	return true;
+    _backgroundColour = colour;
+    if( _outDevice != NULL ) _outDevice->SetBackgroundColour(_backgroundColour);
+    if( _inDevice != NULL ) _inDevice->SetBackgroundColour(_backgroundColour);
+    if( _btnClose != NULL ) _btnClose->SetBackgroundColour(_backgroundColour);
+    wxDialog::SetBackgroundColour(colour);
+    Refresh();
+    return true;
 }
 
 void wxAudioSettings::OnClose( wxCloseEvent& event )

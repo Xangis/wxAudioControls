@@ -34,9 +34,12 @@ public:
     void OnCloseButton( wxCommandEvent& event );
     bool SetForegroundColour(const wxColour &colour);
     bool SetBackgroundColour(const wxColour &colour);
+    void ShowInputDevice(bool state);
 private:
     wxKeylessChoice* _outDevice;
     wxKeylessChoice* _inDevice;
+    wxStaticText* _outText;
+    wxStaticText* _inText;
     wxButton* _btnClose;
     wxColour _backgroundColour;
     wxColour _textColour;
