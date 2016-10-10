@@ -81,67 +81,67 @@ void wxMidiSettingsDlg::CreateControls()
     _txtMidiOutputDevice = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Out Device:"), wxDefaultPosition, wxDefaultSize, 0 );
     itemBoxSizer3->Add(_txtMidiOutputDevice, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-	// Look for MIDI output devices before creating choice box.
-    int numDevices = 0;
+    // Look for MIDI output devices before creating choice box.
+    int numOutDevices = 0;
     if( _callback != NULL && _callback->_midiOutDevice != NULL )
     {
-        int numDevices = _callback->_midiOutDevice->getPortCount();
+        numOutDevices = _callback->_midiOutDevice->getPortCount();
     }
     int count;
-	wxArrayString outDeviceList;
-	for( count = 0; count < numDevices; count++ )
-	{
+    wxArrayString outDeviceList;
+    for( count = 0; count < numOutDevices; count++ )
+    {
         outDeviceList.Add( wxString::FromAscii(_callback->_midiOutDevice->getPortName(count).c_str()) );
-	}
+    }
     _outDevice = new wxKeylessChoice( itemDialog1, ID_MIDI_OUT_DEVICE, wxDefaultPosition, wxDefaultSize, outDeviceList );
-	_outDevice->SetSelection(0);
+    _outDevice->SetSelection(0);
     itemBoxSizer3->Add(_outDevice, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
-	if( numDevices == 0 )
-	{
-		_outDevice->Enable(false);
-	}
+    if( numOutDevices == 0 )
+    {
+        _outDevice->Enable(false);
+    }
 
     _txtMidiInputDevice = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI In Device:"), wxDefaultPosition, wxDefaultSize, 0 );
     itemBoxSizer3->Add(_txtMidiInputDevice, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     // Look for MIDI input devices before creating choice box.
-    numDevices = 0;
+    int numInDevices = 0;
     if( _callback != NULL && _callback->_midiInDevice != NULL )
     {
-        numDevices = _callback->_midiInDevice->getPortCount();
+        numInDevices = _callback->_midiInDevice->getPortCount();
     }
-	wxArrayString inDeviceList;
-	for( count = 0; count < numDevices; count++ )
-	{
-            inDeviceList.Add( wxString::FromAscii(_callback->_midiInDevice->getPortName(count).c_str()) );
-	}
-        _inDevice = new wxKeylessChoice( itemDialog1, ID_MIDI_IN_DEVICE, wxDefaultPosition, wxDefaultSize, inDeviceList );
-	if( numDevices > 0 )
-	{
-		_inDevice->SetSelection(0);
-	}
-	else
-	{
-		_inDevice->Enable(false);
-	}
+    wxArrayString inDeviceList;
+    for( count = 0; count < numInDevices; count++ )
+    {
+        inDeviceList.Add( wxString::FromAscii(_callback->_midiInDevice->getPortName(count).c_str()) );
+    }
+    _inDevice = new wxKeylessChoice( itemDialog1, ID_MIDI_IN_DEVICE, wxDefaultPosition, wxDefaultSize, inDeviceList );
+    if( numInDevices > 0 )
+    {
+        _inDevice->SetSelection(0);
+    }
+    else
+    {
+        _inDevice->Enable(false);
+    }
     itemBoxSizer3->Add(_inDevice, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 
     _txtMidiInputChannel = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Input Channel:"), wxDefaultPosition, wxDefaultSize, 0 );
     itemBoxSizer3->Add(_txtMidiInputChannel, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-	wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     _inputChannelText = new wxStaticText( itemDialog1, ID_INPUTCHANNELTEXT, _T("1"), wxDefaultPosition, wxSize( 22, -1 ), 0 );
     itemBoxSizer5->Add(_inputChannelText, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _inputChannelSpin = new wxBitmapSpinButton( itemDialog1, ID_INPUTCHANNELSPIN, wxDefaultPosition, wxSize( 16, 22 ), wxSP_ARROW_KEYS );
     _inputChannelSpin->SetXpmBitmap( spin_xpm );
     itemBoxSizer5->Add(_inputChannelSpin, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
-	itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 0);
+    itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     _txtMidiOutputChannel = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Output Channel:"), wxDefaultPosition, wxDefaultSize );
     itemBoxSizer3->Add(_txtMidiOutputChannel, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-	wxBoxSizer* itemBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* itemBoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
     _outputChannelText = new wxStaticText( itemDialog1, ID_OUTPUTCHANNELTEXT, _T("1"), wxDefaultPosition, wxSize( 22, -1 ), 0 );
     itemBoxSizer7->Add(_outputChannelText, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 

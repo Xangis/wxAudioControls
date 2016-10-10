@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MIDISETTINGSINTERFACE_H_
+#define _MIDISETTINGSINTERFACE_H_
 
 #include "RtMidi.h"
 
@@ -13,3 +14,5 @@ public:
     RtMidiIn* _midiInDevice;
     RtMidiOut* _midiOutDevice;
 };
+
+#endif
