@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _WXAUDIOSETTINGS_H_
+#define _WXAUDIOSETTINGS_H_
 
 // wxWidgets dialog used for changing MIDI settings.
 
@@ -31,19 +32,15 @@ public:
     void CreateControls();
     void OnClose( wxCloseEvent& event );
     void OnCloseButton( wxCommandEvent& event );
-	void OnChangeMidiOutDevice( wxCommandEvent& event );
-    //void OnChangeMidiInDevice( wxCommandEvent& event );
-	bool SetForegroundColour(const wxColour &colour);
-	bool SetBackgroundColour(const wxColour &colour);
-	//void SetMidiInputDeviceIndex(unsigned int index);
-	void SetMidiOutputDeviceIndex(unsigned int index);
+    bool SetForegroundColour(const wxColour &colour);
+    bool SetBackgroundColour(const wxColour &colour);
 private:
-	wxKeylessChoice* _outDevice;
-    //wxKeylessChoice* _inDevice;
+    wxKeylessChoice* _outDevice;
+    wxKeylessChoice* _inDevice;
     wxButton* _btnClose;
     wxColour _backgroundColour;
     wxColour _textColour;
-	AudioSettingsInterface* _callback;
-	wxStaticText* _txtMidiOutputDevice;
-	//wxStaticText* _txtMidiInputDevice;
+    AudioSettingsInterface* _callback;
 };
+
+#endif
