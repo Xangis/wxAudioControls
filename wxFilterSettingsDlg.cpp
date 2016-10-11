@@ -58,7 +58,7 @@ void wxFilterSettingsDlg::CreateControls()
 
     wxStaticText* itemStaticText3 = new wxStaticText( itemDialog1, wxID_STATIC, _("Filter Type:"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText3->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(itemStaticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(itemStaticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxArrayString filterTypes;
 	filterTypes.Add(_("Low Pass"));
@@ -71,21 +71,21 @@ void wxFilterSettingsDlg::CreateControls()
 
     wxStaticText* itemStaticText16 = new wxStaticText( itemDialog1, wxID_STATIC, _("Filter Frequency:"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText16->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(itemStaticText16, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(itemStaticText16, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slFrequency = new wxSlider( itemDialog1, ID_FILTER_FREQUENCY, 0, 0, 200, wxDefaultPosition, wxSize(200,-1) );
 	itemBoxSizer3->Add(_slFrequency, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     wxStaticText* itemStaticText46 = new wxStaticText( itemDialog1, wxID_STATIC, _("Filter Q:"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText46->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(itemStaticText46, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(itemStaticText46, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slQFactor = new wxSlider( itemDialog1, ID_FILTER_Q, 0, 0, 200, wxDefaultPosition, wxSize(200,-1));
 	itemBoxSizer3->Add(_slQFactor, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     wxStaticText* itemStaticText56 = new wxStaticText( itemDialog1, wxID_STATIC, _("Filter Enabled:"), wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText56->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(itemStaticText56, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(itemStaticText56, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxBitmap* bitmap1 = new wxBitmap(greenbtn_xpm, wxBITMAP_TYPE_XPM );
 	wxBitmap* bitmap2 = new wxBitmap(darkbtn_xpm, wxBITMAP_TYPE_XPM );
@@ -152,6 +152,7 @@ bool wxFilterSettingsDlg::GetEnabled()
 	return _filterEnabled->GetValue();
 }
 
+#ifdef WIN32
 XAUDIO2_FILTER_PARAMETERS wxFilterSettingsDlg::GetFilterParameters()
 {
 	XAUDIO2_FILTER_PARAMETERS parameters;
@@ -195,3 +196,4 @@ void wxFilterSettingsDlg::SetFilterParameters(XAUDIO2_FILTER_PARAMETERS paramete
 	_slFrequency->SetValue(parameters.Frequency * (float)_slFrequency->GetMax());
 	_slQFactor->SetValue(parameters.OneOverQ * (float)_slQFactor->GetMax());
 }
+#endif

@@ -2,7 +2,7 @@
 
 #include "wx/wx.h"
 #include "wxSwitch.h"
-#ifndef linux
+#ifdef WIN32
 #include <audiodefs.h>
 #include <xaudio2.h>
 #endif

@@ -76,7 +76,7 @@ void wxADSRDlg::CreateControls()
 
     _staticText1 = new wxStaticText( itemDialog1, wxID_STATIC, _("Attack (msec):"), wxDefaultPosition, wxDefaultSize, 0 );
     _staticText1->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_staticText1, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_staticText1, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slAttack = new wxBitmapSlider( itemDialog1, ID_ADSR_ATTACK, 0, 0, 1000, wxDefaultPosition, wxSize(211,24) );
 	_slAttack->SetXpmBitmaps(sliderbk_xpm, sliderind_xpm);
@@ -84,11 +84,11 @@ void wxADSRDlg::CreateControls()
 
     _txtAttack = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
     _txtAttack->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_txtAttack, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtAttack, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     _staticText2 = new wxStaticText( itemDialog1, wxID_STATIC, _("Decay (msec):"), wxDefaultPosition, wxDefaultSize, 0 );
     _staticText2->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_staticText2, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_staticText2, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slDecay = new wxBitmapSlider( itemDialog1, ID_ADSR_DECAY, 0, 0, 1000, wxDefaultPosition, wxSize(211,24));
 	_slDecay->SetXpmBitmaps(sliderbk_xpm, sliderind_xpm);
@@ -96,11 +96,11 @@ void wxADSRDlg::CreateControls()
 
     _txtDecay = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
     _txtDecay->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_txtDecay, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtDecay, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_staticText3 = new wxStaticText( itemDialog1, wxID_STATIC, _("Sustain (percent):"), wxDefaultPosition, wxDefaultSize, 0 );
     _staticText3->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_staticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_staticText3, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slSustain = new wxBitmapSlider( itemDialog1, ID_ADSR_SUSTAIN, 0, 0, 100, wxDefaultPosition, wxSize(211,24));
 	_slSustain->SetXpmBitmaps(sliderbk_xpm, sliderind_xpm);
@@ -108,11 +108,11 @@ void wxADSRDlg::CreateControls()
 
     _txtSustain = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
     _txtSustain->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_txtSustain, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtSustain, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_staticText4 = new wxStaticText( itemDialog1, wxID_STATIC, _("Release (msec):"), wxDefaultPosition, wxDefaultSize, 0 );
     _staticText4->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_staticText4, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_staticText4, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slRelease = new wxBitmapSlider( itemDialog1, ID_ADSR_RELEASE, 0, 0, 500, wxDefaultPosition, wxSize(211,24));
 	_slRelease->SetXpmBitmaps(sliderbk_xpm , sliderind_xpm);
@@ -120,7 +120,7 @@ void wxADSRDlg::CreateControls()
 
     _txtRelease = new wxStaticText( itemDialog1, wxID_STATIC, _("0"), wxDefaultPosition, wxSize(32,-1), 0 );
     _txtRelease->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_txtRelease, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_txtRelease, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 }
 
 bool wxADSRDlg::SetForegroundColour(const wxColour &colour)
