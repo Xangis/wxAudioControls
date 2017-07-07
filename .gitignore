@@ -3,3 +3,5 @@
 *.filters
 *.user
 *.old
+*.sdf
+*.opensdf
