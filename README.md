@@ -26,3 +26,13 @@ On Linux, most projects just compile in the source files that they need.
 # Development Status
 
 I actively maintain this library because many of my applications depend on it.
+
+### Programs Using This Library
+
+This is a non-exhaustive list of programs that use this library.
+
+- AlgoRhythmia http://zetacentauri.com/software_algorhythmia.htm
+- DrumPads http://zetacentauri.com/software_drumpads.htm
+- Proxima Controller https://github.com/Xangis/ProximaController
+- SampliTron http://zetacentauri.com/software_samplitron.htm
+- Sigmatizm http://zetacentauri.com/software_sigmatizm.htm
