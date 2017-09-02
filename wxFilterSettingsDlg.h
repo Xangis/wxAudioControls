@@ -2,7 +2,7 @@
 
 #include "wx/wx.h"
 #include "wxSwitch.h"
-#ifdef WIN32
+#ifdef USE_XAUDIO
 #include <audiodefs.h>
 #include <xaudio2.h>
 #endif
@@ -35,7 +35,7 @@ public:
 	bool SetBackgroundColour(const wxColour &colour);
 	void SetEnabled(bool enabled);
 	bool GetEnabled();
-#ifdef WIN32
+#ifdef USE_XAUDIO
 	XAUDIO2_FILTER_PARAMETERS GetFilterParameters();
 	void SetFilterParameters(XAUDIO2_FILTER_PARAMETERS parameters);
 #endif

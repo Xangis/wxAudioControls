@@ -152,7 +152,7 @@ bool wxFilterSettingsDlg::GetEnabled()
 	return _filterEnabled->GetValue();
 }
 
-#ifdef WIN32
+#ifdef USE_XAUDIO
 XAUDIO2_FILTER_PARAMETERS wxFilterSettingsDlg::GetFilterParameters()
 {
 	XAUDIO2_FILTER_PARAMETERS parameters;
