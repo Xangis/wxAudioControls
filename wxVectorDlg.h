@@ -5,15 +5,14 @@
 
 #include "wx/wx.h"
 
-#define ID_MIDILOGGER_DLG 19000
+#define ID_VECTOR_DLG 19000
 #define SYMBOL_WXVECTORDLG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
 #define SYMBOL_WXVECTORDLG_TITLE _("Vector Control")
 #define SYMBOL_WXVECTORDLG_IDNAME ID_MIDISETTINGS_DLG
 #define SYMBOL_WXVECTORDLG_SIZE wxSize(400, 300)
 #define SYMBOL_WXVECTORDLG_POSITION wxDefaultPosition
-#define ID_BUTTON_CLOSE 19001
-#define ID_INPUTMESSAGES 19010
-
+#define ID_VBUTTON_CLOSE 19001
+#define ID_VECTORPANEL 19002
 
 class wxVectorDlg : public wxDialog
 {
@@ -22,8 +21,8 @@ class wxVectorDlg : public wxDialog
 public:
     wxVectorDlg();
     ~wxVectorDlg();
-    wxVectorDlg( wxWindow* parent, wxWindowID id = ID_MIDILOGGER_DLG, const wxString& caption = SYMBOL_WXVECTORDLG_TITLE, const wxPoint& pos = SYMBOL_WXVECTORDLG_POSITION, const wxSize& size = SYMBOL_WXVECTORDLG_SIZE, long style = SYMBOL_WXVECTORDLG_STYLE );
-    bool Create( wxWindow* parent, wxWindowID id = ID_MIDILOGGER_DLG, const wxString& caption = SYMBOL_WXVECTORDLG_TITLE, const wxPoint& pos = SYMBOL_WXVECTORDLG_POSITION, const wxSize& size = SYMBOL_WXVECTORDLG_SIZE, long style = SYMBOL_WXVECTORDLG_STYLE );
+    wxVectorDlg( wxWindow* parent, wxWindowID id = ID_VECTOR_DLG, const wxString& caption = SYMBOL_WXVECTORDLG_TITLE, const wxPoint& pos = SYMBOL_WXVECTORDLG_POSITION, const wxSize& size = SYMBOL_WXVECTORDLG_SIZE, long style = SYMBOL_WXVECTORDLG_STYLE );
+    bool Create( wxWindow* parent, wxWindowID id = ID_VECTOR_DLG, const wxString& caption = SYMBOL_WXVECTORDLG_TITLE, const wxPoint& pos = SYMBOL_WXVECTORDLG_POSITION, const wxSize& size = SYMBOL_WXVECTORDLG_SIZE, long style = SYMBOL_WXVECTORDLG_STYLE );
     void CreateControls();
     void OnClose( wxCloseEvent& event );
     void OnCloseButton( wxCommandEvent& event );

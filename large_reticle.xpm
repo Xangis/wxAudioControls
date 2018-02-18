@@ -1,5 +1,5 @@
 /* XPM */
-static char * large_reticle_xpm[] = {
+static const char * large_reticle_xpm[] = {
 "500 500 129 2",
 "  	c None",
 ". 	c #000000",

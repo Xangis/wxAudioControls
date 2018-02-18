@@ -95,7 +95,10 @@ bool wxMidiLogger::SetForegroundColour(const wxColour &colour)
 bool wxMidiLogger::SetBackgroundColour(const wxColour &colour)
 {
 	_backgroundColour = colour;
-	_btnClose->SetBackgroundColour(_backgroundColour);
+        if( _btnClose != NULL )
+        {
+	    _btnClose->SetBackgroundColour(_backgroundColour);
+        }
 	wxDialog::SetBackgroundColour(colour);
 	Refresh();
 	return true;
