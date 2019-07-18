@@ -1,10 +1,10 @@
 #pragma once
 
-#include "portaudio.h"
+#include "RtAudio.h"
 
 class AudioSettingsInterface
 {
 public:
-	virtual void SelectAudioInputDevice(PaStreamParameters* device) = 0;
-	virtual void SelectAudioOutputDevice(PaStreamParameters* device) = 0;
+	virtual void SelectAudioInputDevice(RtAudio::StreamParameters* device) = 0;
+	virtual void SelectAudioOutputDevice(RtAudio::StreamParameters* device) = 0;
 };

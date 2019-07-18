@@ -1,6 +1,6 @@
 #include "wxAudioSettings.h"
 #include "wx/stdpaths.h"
-#include "portaudio.h"
+#include "RtAudio.h"
 
 #include "spin.xpm"
 
@@ -93,25 +93,17 @@ void wxAudioSettings::CreateControls()
     }
 
     // Get input and output device details.
-    PaStreamParameters outputParameters;
-    PaStreamParameters inputParameters;
-    const PaDeviceInfo* deviceInfo = NULL;
-    memset( &outputParameters, 0, sizeof( PaStreamParameters ) ); //not necessary if you are filling in all the fields
-    memset( &inputParameters, 0, sizeof( PaStreamParameters ) ); //not necessary if you are filling in all the fields
-    outputParameters.channelCount = 2;
-    outputParameters.hostApiSpecificStreamInfo = NULL;
-    outputParameters.sampleFormat = paFloat32;
-    outputParameters.hostApiSpecificStreamInfo = NULL; // See your specific host's API docs for info on using this field
-    inputParameters.channelCount = 2;
-    inputParameters.hostApiSpecificStreamInfo = NULL;
-    inputParameters.sampleFormat = paFloat32;
-    inputParameters.hostApiSpecificStreamInfo = NULL; // See your specific host's API docs for info on using this field
+    RtAudio::StreamParameters outputParameters;
+    RtAudio::StreamParameters inputParameters;
+    const RtAudio::DeviceInfo* deviceInfo = NULL;
+    outputParameters.nChannels = 2;
+    outputParameters.sampleFormat = RTAUDIO_FLOAT32;
+    inputParameters.nChannels = 2;
+    inputParameters.sampleFormat = RTAUDIO_FLOAT32;
     for( int i = 0; i < numDevices; i++ )
     {
         deviceInfo = Pa_GetDeviceInfo( i );
-        outputParameters.suggestedLatency = deviceInfo->defaultLowOutputLatency;
         outputParameters.device = i;
-        inputParameters.suggestedLatency = deviceInfo->defaultLowInputLatency;
         inputParameters.device = i;
 
         int err = Pa_IsFormatSupported( NULL, &outputParameters, 44100 );
