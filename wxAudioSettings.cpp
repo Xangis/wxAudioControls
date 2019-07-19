@@ -65,7 +65,8 @@ void wxAudioSettings::CreateControls()
     wxFlexGridSizer* itemBoxSizer3 = new wxFlexGridSizer(2, 2, 0, 0);
     itemBoxSizer2->Add(itemBoxSizer3, 0, 0, 0 );
 
-    int numDevices = Pa_GetDeviceCount();
+    RtAudio audio;
+    int numDevices = audio.getDeviceCount();
     if( numDevices < 0 )
     {
         wxMessageBox( wxString::Format(_("ERROR: Pa_CountDevices returned 0x%x.\n"), numDevices ) );
@@ -95,48 +96,25 @@ void wxAudioSettings::CreateControls()
     // Get input and output device details.
     RtAudio::StreamParameters outputParameters;
     RtAudio::StreamParameters inputParameters;
-    const RtAudio::DeviceInfo* deviceInfo = NULL;
+    RtAudio::DeviceInfo deviceInfo;;
     outputParameters.nChannels = 2;
-    outputParameters.sampleFormat = RTAUDIO_FLOAT32;
+    outputParameters.firstChannel = 0;
     inputParameters.nChannels = 2;
-    inputParameters.sampleFormat = RTAUDIO_FLOAT32;
+    inputParameters.firstChannel = 0;
     for( int i = 0; i < numDevices; i++ )
     {
-        deviceInfo = Pa_GetDeviceInfo( i );
-        outputParameters.device = i;
-        inputParameters.device = i;
+        deviceInfo = audio.getDeviceInfo( i );
+        outputParameters.deviceId = i;
+        inputParameters.deviceId = i;
 
-        int err = Pa_IsFormatSupported( NULL, &outputParameters, 44100 );
-        if( err == paFormatIsSupported )
+        for( int i = 0; i < deviceInfo.sampleRates.size(); i++ )
         {
-            int msec = deviceInfo->defaultLowOutputLatency * 1000.0;
-		    // Add the device to a list box on the GUI.
-            if( msec )
+            if( deviceInfo.sampleRates[i] == 44100 )
             {
-                _outDevice->Insert(wxString::Format(_("%s (%d ms) [%s]"), wxString::FromAscii(deviceInfo->name).c_str(),
-                    msec, wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)&outputParameters );
-            }
-            else
-            {
-                _outDevice->Insert(wxString::Format(_("%s [%s]"), wxString::FromAscii(deviceInfo->name).c_str(),
-                    wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)&outputParameters );
-            }
-        }
-
-        err = Pa_IsFormatSupported( NULL, &inputParameters, 44100 );
-        if( err == paFormatIsSupported )
-        {
-            int msec = deviceInfo->defaultLowInputLatency * 1000.0;
-		    // Add the device to a list box on the GUI.
-            if( msec )
-            {
-                _inDevice->Insert(wxString::Format(_("%s (%d ms) [%s]"), wxString::FromAscii(deviceInfo->name).c_str(),
-                    msec, wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)&inputParameters );
-            }
-            else
-            {
-                _inDevice->Insert(wxString::Format(_("%s [%s]"), wxString::FromAscii(deviceInfo->name).c_str(),
-                    wxString::FromAscii(Pa_GetHostApiInfo(deviceInfo->hostApi)->name).c_str()), 0, (void *)&inputParameters );
+                //_outDevice->Insert(wxString::Format(_("%s"), wxString::FromAscii(deviceInfo.name)).c_str(), 0, (void *)&outputParameters );
+                //_inDevice->Insert(wxString::Format(_("%s"), wxString::FromAscii(deviceInfo.name)).c_str(), 0, (void *)&inputParameters );
+                _outDevice->Insert(deviceInfo.name, 0, (void *)&outputParameters );
+                _inDevice->Insert(deviceInfo.name, 0, (void *)&inputParameters );
             }
         }
     }
