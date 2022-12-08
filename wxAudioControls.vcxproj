@@ -110,12 +110,15 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\AudioFile;E:\lib\rtmidi-2.1.0;E:\lib\libsndfile-1.0.28\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;E:\lib\pa_stable_v19_20140130\portaudio\include;E:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\AudioFile;E:\lib\rtmidi-2.1.0;E:\lib\libsndfile-1.0.28\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;E:\lib\pa_stable_v19_20140130\portaudio\include;E:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\AudioFile;E:\lib\rtmidi-2.1.0;E:\lib\libsndfile-1.0.28\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;E:\lib\pa_stable_v19_20140130\portaudio\include;E:\lib\wxWidgets-3.2.1\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\AudioFile;E:\lib\rtmidi-2.1.0;E:\lib\libsndfile-1.0.28\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;E:\lib\pa_stable_v19_20140130\portaudio\include;E:\lib\wxWidgets-3.2.1\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">C:\Users\Xangis\code\AudioFile;F:\lib\rtmidi-2.1.0;F:\lib\libsndfile-1.0.25\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>E:\lib\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>E:\lib\wxWidgets-3.2.1\lib\vc_lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>E:\lib\wxWidgets-3.2.1\lib\vc_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

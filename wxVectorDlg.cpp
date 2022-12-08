@@ -45,7 +45,7 @@ void wxVectorDlg::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     itemDialog1->SetSizer(itemBoxSizer2);
 
-	wxBitmap reticleBitmap(large_reticle_xpm, wxBITMAP_TYPE_XPM);
+	wxBitmap reticleBitmap(large_reticle_xpm);
 	_vectorPanel = new wxStaticBitmap( itemDialog1, ID_VECTORPANEL, reticleBitmap, wxDefaultPosition, wxSize(500, 500) );
     itemBoxSizer2->Add(_vectorPanel, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 	_vectorPanel->SetBackgroundColour(wxColour(16, 32, 96));

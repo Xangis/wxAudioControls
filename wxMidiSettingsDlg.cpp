@@ -153,8 +153,8 @@ void wxMidiSettingsDlg::CreateControls()
 	_txtMidiOutputEnabled = new wxStaticText( itemDialog1, wxID_STATIC, _("MIDI Output Enabled:"), wxDefaultPosition, wxDefaultSize );
     itemBoxSizer3->Add(_txtMidiOutputEnabled, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-	wxBitmap* bitmap1 = new wxBitmap(greenbtn_xpm, wxBITMAP_TYPE_XPM );
-	wxBitmap* bitmap2 = new wxBitmap(darkbtn_xpm, wxBITMAP_TYPE_XPM );
+	wxBitmap* bitmap1 = new wxBitmap(greenbtn_xpm);
+	wxBitmap* bitmap2 = new wxBitmap(darkbtn_xpm);
 	_chkMidiOutEnabled = new wxSwitch( itemDialog1, ID_CHK_MIDIOUT, _T(""), wxDefaultPosition, wxSize(22,22) );
 	if( bitmap1->Ok() && bitmap2->Ok() )
 	{

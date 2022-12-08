@@ -84,6 +84,6 @@ void wxBitmapSpinButton::SetXpmBitmap( const char** image)
         return;
     }
     //_lightLock.lock();
-	_image = wxBitmap(image, wxBITMAP_TYPE_XPM).ConvertToImage();
+	_image = wxBitmap(image).ConvertToImage();
     //_lightLock.unlock();
 }

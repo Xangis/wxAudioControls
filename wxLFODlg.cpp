@@ -67,7 +67,7 @@ void wxLFODlg::CreateControls()
 
     _staticText1 = new wxStaticText( itemDialog1, wxID_STATIC, _("LFO Freq (Hz):"), wxDefaultPosition, wxDefaultSize, 0 );
     _staticText1->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_staticText1, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_staticText1, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	_slFrequency = new wxBitmapSlider( itemDialog1, ID_LFO_FREQUENCY, 0, 0, 200, wxDefaultPosition, wxSize(211,24) );
 	_slFrequency->SetXpmBitmaps(sliderbk_xpm, sliderind_xpm);
@@ -79,7 +79,7 @@ void wxLFODlg::CreateControls()
 
     _staticText2 = new wxStaticText( itemDialog1, wxID_STATIC, _("LFO Waveform:"), wxDefaultPosition, wxDefaultSize, 0 );
     _staticText2->SetForegroundColour(_textColour);
-    itemBoxSizer3->Add(_staticText2, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer3->Add(_staticText2, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
 	wxArrayString choices;
 	choices.Add(_("Sine"));

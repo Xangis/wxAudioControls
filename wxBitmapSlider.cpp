@@ -295,8 +295,8 @@ void wxBitmapSlider::SetXpmBitmaps( const char** backgroundImage, const char** i
         return;
     }
     // Need to do a wxMutex.lock() here;
-	_backgroundImage = wxBitmap(backgroundImage, wxBITMAP_TYPE_XPM).ConvertToImage();
-    _indicatorImage = wxBitmap(indicatorImage, wxBITMAP_TYPE_XPM).ConvertToImage();
+	_backgroundImage = wxBitmap(backgroundImage).ConvertToImage();
+    _indicatorImage = wxBitmap(indicatorImage).ConvertToImage();
     // Need to do a wxMutex.unlock() here;
 }
 
