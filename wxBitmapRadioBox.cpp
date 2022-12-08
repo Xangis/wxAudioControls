@@ -38,7 +38,7 @@ void wxBitmapRadioBox::OnPaint( wxPaintEvent& event )
     dc.GetTextExtent(_label, &x, &y, 0, 0, &font);
     dc.DrawRectangle(9, 0, x+2, y );
     dc.DrawText(_label, 9, 0);
-    for( int count = 0; count < GetCount(); count++ )
+    for( unsigned int count = 0; count < GetCount(); count++ )
     {
 	    // Figure out whether to draw the on image or the off image.
 	    if( GetSelection() == count )
@@ -137,7 +137,7 @@ void wxBitmapRadioBox::OnClick(wxMouseEvent& event)
     {
         return;
     }
-    int item = y / 20;
+    unsigned int item = y / 20;
     if( item >= 0 && item < this->GetCount() )
     {
         SetSelection(item);
@@ -165,7 +165,7 @@ wxSize wxBitmapRadioBox::DoGetBestSize() const
     int y = 0;
     int width = 0;
     wxMemoryDC dc;
-    for( int count = 0; count < GetCount(); count++ )
+    for( unsigned int count = 0; count < GetCount(); count++ )
     {
         dc.GetTextExtent(_itemList[count], &x, &y, 0, 0, &font);
         if( x > width )
