@@ -33,31 +33,31 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Demo Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>false</CLRSupport>
-    <PlatformToolset>v100</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -110,9 +110,12 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Xangis\code\AudioFile;F:\lib\rtmidi-2.1.0;F:\lib\libsndfile-1.0.25\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Xangis\code\AudioFile;F:\lib\rtmidi-2.1.0;F:\lib\libsndfile-1.0.25\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\AudioFile;E:\lib\rtmidi-2.1.0;E:\lib\libsndfile-1.0.28\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;E:\lib\pa_stable_v19_20140130\portaudio\include;E:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\AudioFile;E:\lib\rtmidi-2.1.0;E:\lib\libsndfile-1.0.28\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;E:\lib\pa_stable_v19_20140130\portaudio\include;E:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Demo Release|Win32'">C:\Users\Xangis\code\AudioFile;F:\lib\rtmidi-2.1.0;F:\lib\libsndfile-1.0.25\include;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;F:\lib\pa_stable_v19_20140130\portaudio\include;F:\lib\wxWidgets-3.0.2\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>E:\lib\wxWidgets-3.0.2\lib\vc_lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -246,7 +249,7 @@
     <None Include="graybtn.xpm" />
     <None Include="greenbtn.xpm" />
     <None Include="orangebtn.xpm" />
-    <None Include="todo.txt" />
+    <None Include="Notes.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
